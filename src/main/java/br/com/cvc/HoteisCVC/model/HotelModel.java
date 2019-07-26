@@ -1,14 +1,10 @@
 package br.com.cvc.HoteisCVC.model;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 public class HotelModel {
 
 	private int id;
 	private String name;
-	private RoomModel[] rooms;
+	public RoomModel[] rooms;
 
 	public String getName() {
 		return name;

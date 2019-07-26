@@ -2,6 +2,7 @@ package br.com.cvc.HoteisCVC.controller;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,12 +12,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.cvc.HoteisCVC.busines.HotelService;
 import br.com.cvc.HoteisCVC.model.HotelModel;
 import ch.qos.logback.core.joran.spi.DefaultClass;
 
 @RestController
 @RequestMapping("/pesquisar")
 public class PesquisaController {
+	
+	@Autowired
+	private HotelService hotelService;
 
 	
 	@RequestMapping(value="/hotel/{id}", 
@@ -30,7 +35,7 @@ public class PesquisaController {
 														  , @RequestParam(value = "chdQuantity" , defaultValue = "") Integer qtdChd
 														 ) throws Exception{
          System.out.println("Quantidade adultos" + qtdAdultos);
-		return new HotelModel().buscarPorIdHotel(hotelId, qtdAdultos , qtdChd , CheckIn , CheckOut );
+		return hotelService.buscarPorIdHotel(hotelId, qtdAdultos , qtdChd , CheckIn , CheckOut );
 	
 	}
 	
@@ -45,6 +50,6 @@ public class PesquisaController {
 														  , @RequestParam("chdQuantity") Integer qtdChd
 														 ) throws Exception{
          
-		return new HotelModel().buscarPorCodigoCidade(cityCode, qtdAdultos , qtdChd , CheckIn , CheckOut);
+		return hotelService.buscarPorCodigoCidade(cityCode, qtdAdultos , qtdChd , CheckIn , CheckOut);
 	}
 }

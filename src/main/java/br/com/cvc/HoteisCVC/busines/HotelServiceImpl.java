@@ -2,7 +2,12 @@ package br.com.cvc.HoteisCVC.busines;
 
 import br.com.cvc.HoteisCVC.model.HotelModel;
 import br.com.cvc.HoteisCVC.model.RoomModel;
+
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,7 +24,6 @@ import java.util.List;
 @Service
 public class HotelServiceImpl implements HotelService {
 
-    @Override
     public ArrayList<HotelModel> buscarPorIdHotel(Integer hotelId, Integer qtdAdultos, Integer qtdChd, String checkIn, String checkOut) throws Exception {
         String readLine = null;
         URL endereco = new URL("https://cvcbackendhotel.herokuapp.com/hotels/" + hotelId);
@@ -59,7 +63,6 @@ public class HotelServiceImpl implements HotelService {
         }
     }
 
-    @Override
     public ArrayList<HotelModel>buscarPorCodigoCidade (Integer cityCode, Integer quantidadeAdultos, Integer quantidadeChd, String checkIn,
                                                        String checkOut) throws Exception {
         String readLine = null;
